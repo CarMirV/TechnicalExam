@@ -192,7 +192,34 @@ public class Application
     public static int persistence(long n)
     {
         //Next is so easy after this
-        return 0;
+    	if(n/1000 != 0) {
+    		int mil = (int)(n/1000);
+    		n %= 1000;
+    		int cent = (int)(n/100);
+    		n %= 100;
+    		int dec = (int)(n/10);
+    		n %= 10;
+    		int res = (int)(n/1);
+    		n %= 1;
+    		return (int)persistence(mil*cent*dec*res);
+    	}else if(n/100 != 0) {
+    		int cent = (int)(n/100);
+    		n %= 100;
+    		int dec = (int)(n/10);
+    		n %= 10;
+    		int res = (int)(n/1);
+    		n %= 1;
+    		return (int)persistence(cent*dec*res);
+    	}else if(n/10 != 0) {
+    		int dec = (int)(n/10);
+    		n %= 10;
+    		int res = (int)(n/1);
+    		n /= 1;
+    		return (int)persistence(dec*res);
+    	}else if(n > 0){
+    	    return (int)n;
+    	}
+    	return (int)n;
     }
 
     /**
