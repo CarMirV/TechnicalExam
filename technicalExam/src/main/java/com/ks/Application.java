@@ -313,7 +313,21 @@ public class Application
     public static String[] solution(String s)
     {
         //Will be worse ?
-        return new String[]{};
+    	if(s.length() % 2 != 0) {
+    		s = s.concat("_");
+    	}
+    	int size = s.length()/2;
+    	String[] pairs = new String[size];
+    	int beg = 0, end = 2;
+    	for(int i = 0; i < size; ++i) {
+    		pairs[i] = s.substring(beg, end);
+    		beg += 2;
+    		end += 2;
+    	}
+        return pairs;
+        /*
+         * Done :)
+         */
     }
 
     /**
