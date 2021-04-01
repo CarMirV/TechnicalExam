@@ -349,7 +349,39 @@ public class Application
     public static String longToIP(long ip)
     {
         //yes, can be worse...
-        return "";
+    	String bin = Long.toBinaryString(ip);
+    	System.out.println(bin);
+    	if(bin.length() < 32) {
+    		int comp = 32 - bin.length();
+    		for(int i = 0; i < comp; ++i) {
+    			String aux = bin;
+    			bin = "0";
+    			bin = bin.concat(aux);
+    		}
+    	}
+    	System.out.println(bin);
+    	String first = bin.substring(0, 8);
+    	String second = bin.substring(8, 16);
+    	String third = bin.substring(16, 24);
+    	String fourth = bin.substring(24, 32);
+    	System.out.println(first);
+    	System.out.println(second);
+    	System.out.println(third);
+    	System.out.println(fourth);
+    	int p1 = Integer.parseInt(first, 2);
+    	int p2 = Integer.parseInt(second, 2);
+    	int p3 = Integer.parseInt(third, 2);
+    	int p4 = Integer.parseInt(fourth, 2);
+    	System.out.println(p1);
+    	System.out.println(p2);
+    	System.out.println(p3);
+    	System.out.println(p4);
+    	String fIp = String.valueOf(p1);
+    	fIp = fIp.concat("."+String.valueOf(p2)+"."+String.valueOf(p3)+"."+String.valueOf(p4));
+        return fIp;
+        /*
+         * Done :)
+         */
     }
 
     /**
