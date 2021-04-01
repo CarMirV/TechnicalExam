@@ -161,7 +161,17 @@ public class Application
     public static int getCount(String str)
     {
         //...
-        return 0;
+    	char voc[] = {'a','e','i','o','u'};
+    	int tot=0;
+    	str = str.toLowerCase();
+    	for(int i = 0 ; i < str.length(); ++i) {
+    		for(int j = 0 ; j < voc.length; ++j) {
+    			if(str.charAt(i) == voc[j]) {
+    				++tot;
+    			}
+    		}
+    	}
+        return tot;
     }
 
     /**
