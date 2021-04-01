@@ -134,6 +134,7 @@ public class Application
     	//convertimos todo el string a minusculas para poder compararlo con otras letras ya
     	//que se nos indica que el algoritmo no es sensible a mayusculas
     	String cp = text.toLowerCase();
+    	text = text.toLowerCase();
     	for(int i = 0; i < text.length(); ++i) {
     		int sum = 0;
     		for(int j = 0 ; j < cp.length(); ++j) {
@@ -454,14 +455,38 @@ public class Application
     	//Buscamos por una incidencia de el numero en la posicion del arreglo en la que estamos,
     	//en caso de que se encuentre lo retornamos como valor de salida, en caso contrario simplemente
     	//buscamos los demas numeros que siguen
+    	int dist = 100000;
+    	int val = 0;
     	for(int i =0 ; i < values.length; ++i) {
+    		int cont = 0;
     		for(int j = i+1; j < values.length; ++j) {
+    			++cont;
     			if(values[i] == values[j]) {
-    				return values[i];
+    				if(cont < dist) {
+    					val = values[i];
+    					dist = cont;
+    					break;
+    				}
     			}
     		}
     	}
-        return 0;
+        return val;
+        			//Para este problema me surgieron dudas, al momento de realizar los casos pruebas me indico un
+        			//error, tomando la logica de ese caso el codigo de arriba seria el que da los resultados
+        			//dado a que se toma como factor la distancia para que se repita el numero
+        			//Sin embargo los casos que se dan como ejemplo aqui seguirian una logica en la que la distancia
+        			//es ignorada y solo se toma el primer numero que se encuentre segun el orden del arreglo
+        			//aqui mismo dejo comentado el codigo que brinda un resultado para los casos ejemplo proporcionados
+        /*
+		        for(int i =0 ; i < values.length; ++i) {
+		    		for(int j = i+1; j < values.length; ++j) {
+		    			if(values[i] == values[j]) {
+		    				return values[i];
+		    			}
+		    		}
+		    	}
+		        return -1;
+        */
         /*
          * Completed
          */
