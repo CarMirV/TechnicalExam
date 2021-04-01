@@ -400,7 +400,17 @@ public class Application
     public static int findShort(String s)
     {
         //have fun!
-        return 0;
+    	int shortest = 100000;
+    	String[] div = s.split(" ");
+    	for(int i =0; i < div.length; ++i) {
+    		if(div[i].length() < shortest) {
+    			shortest = div[i].length();
+    		}
+    	}
+        return shortest;
+        /*
+         * Done :D
+         */
     }
 
     /**
