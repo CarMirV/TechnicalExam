@@ -17,15 +17,14 @@ public class Application
      * @param years years...
      * @return century on the years
      */
-	
-	
-	/*
-	 * This is a test
-	 */
     public static int yearsToCenturies(int years)
     {
         //Let's start!
-        return 0;
+    	int centuries = (years/100)+1;
+        return centuries;
+        /*
+         * Done :)
+         */
     }
 
     /**
@@ -46,7 +45,29 @@ public class Application
     public static boolean scramble(String str1, String str2)
     {
         //First tear ;(
+    	String copy1 = str1;
+    	String copy2 = str2;
+    	boolean result = false;
+    	for(int i = 0; i < copy2.length(); ++i) {
+			boolean find = false;
+    		for(int j = 0 ; j < copy1.length(); ++j) {
+    			if(copy2.charAt(i) == copy1.charAt(j)) {
+    				copy1 = copy1.replaceFirst(String.valueOf(copy2.charAt(i)), "");
+    				find = true;
+    				System.out.println(copy1);
+    				break;
+    			}else if(j == copy1.length()-1) {
+    				return false;
+    			}
+    		}
+    		if(i == copy2.length()-1 && find == true) {
+    			return true;
+    		}
+    	}
         return false;
+        /*
+         * Done :)
+         */
     }
 
     /**
@@ -68,7 +89,17 @@ public class Application
     public static String getMiddle(String word)
     {
         //So easy ...
-        return "";
+    	int length = word.length();
+    	if (length % 2 != 0) {
+    		return String.valueOf(word.charAt((length/2)));
+    	}else {
+    		String res = String.valueOf(word.charAt((length/2)-1));
+    		res = res.concat(String.valueOf(word.charAt((length/2))));
+    		return res;
+    	}
+        /*
+         * Done :)
+         */
     }
 
     /**
