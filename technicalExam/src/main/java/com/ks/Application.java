@@ -172,6 +172,9 @@ public class Application
     		}
     	}
         return tot;
+        /*
+         * Done :)
+         */
     }
 
     /**
@@ -220,6 +223,9 @@ public class Application
     	    return (int)n;
     	}
     	return (int)n;
+    	/*
+    	 * Also done :)
+    	 */
     }
 
     /**
@@ -238,7 +244,57 @@ public class Application
     public static int digital_root(int n)
     {
         //Another easy
-        return 0;
+    	if(n/100000 != 0) {
+    		int ht = n/100000;
+    		n %= 100000;
+    		int dt = n/10000;
+    		n %= 10000;
+    		int tho = n/1000;
+    		n %= 1000;
+    		int hund = n/100;
+    		n %= 100;
+    		int dec = n/10;
+    		n %= 10;
+    		int res = n/1;
+    		return digital_root(ht+dt+tho+hund+dec+res);
+    	}else if(n/10000 != 0) {
+    		int dt = n/10000;
+    		n %= 10000;
+    		int tho = n/1000;
+    		n %= 1000;
+    		int hund = n/100;
+    		n %= 100;
+    		int dec = n/10;
+    		n %= 10;
+    		int res = n/1;
+    		return digital_root(dt+tho+hund+dec+res);
+    	}else if(n/1000 != 0) {
+    		int tho = n/1000;
+    		n %= 1000;
+    		int hund = n/100;
+    		n %= 100;
+    		int dec = n/10;
+    		n %= 10;
+    		int res = n/1;
+    		return digital_root(tho+hund+dec+res);
+    	}else if(n/100 != 0) {
+    		int hund = n/100;
+    		n %= 100;
+    		int dec = n/10;
+    		n %= 10;
+    		int res = n/1;
+    		return digital_root(hund+dec+res);
+    	}else if(n/10 != 0) {
+    		int dec = n/10;
+    		n %= 10;
+    		int res = n/1;
+    		return digital_root(dec+res);
+    	}else {
+    		return n;
+    	}
+    	/*
+    	 * Done :)
+    	 */
     }
 
 
