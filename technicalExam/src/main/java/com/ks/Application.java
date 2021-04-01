@@ -48,18 +48,24 @@ public class Application
     	String copy1 = str1;
     	String copy2 = str2;
     	boolean result = false;
+    	//Se toma como limitante la copia de str2 ya que es la palabra que buscamos
     	for(int i = 0; i < copy2.length(); ++i) {
 			boolean find = false;
     		for(int j = 0 ; j < copy1.length(); ++j) {
     			if(copy2.charAt(i) == copy1.charAt(j)) {
+    				//En caso de encontrar una letra se sustituye su primera incidencia por una cadena vacia
+    				//para poder tener la cantidad de letras suficientes en caso de que se repita, de esta
+    				//manera elimino las letras ya encontradas.
     				copy1 = copy1.replaceFirst(String.valueOf(copy2.charAt(i)), "");
     				find = true;
     				System.out.println(copy1);
     				break;
     			}else if(j == copy1.length()-1) {
+    				//En caso de recorrer el arreeglo de letras disponibles y no encontrar la letra retornamos falso
     				return false;
     			}
     		}
+    		//en caso de llegar a la ultima letra por encontrar y que haya sido encontrada retornamos true
     		if(i == copy2.length()-1 && find == true) {
     			return true;
     		}
@@ -93,6 +99,8 @@ public class Application
     	if (length % 2 != 0) {
     		return String.valueOf(word.charAt((length/2)));
     	}else {
+    		//Como es una palabra par no tenemos una letra intermedia por lo que tomamos a las que serian
+    		//las intermedias
     		String res = String.valueOf(word.charAt((length/2)-1));
     		res = res.concat(String.valueOf(word.charAt((length/2))));
     		return res;
@@ -123,6 +131,8 @@ public class Application
     {
         //have fun!
     	int tot = 0;
+    	//convertimos todo el string a minusculas para poder compararlo con otras letras ya
+    	//que se nos indica que el algoritmo no es sensible a mayusculas
     	String cp = text.toLowerCase();
     	for(int i = 0; i < text.length(); ++i) {
     		int sum = 0;
@@ -131,6 +141,9 @@ public class Application
     			    ++sum;
     			}
     			if(j == cp.length()-1) {
+    				//En caso de que haya mas de una incidencia de la letra repetida sumamos 1 a el numero
+    				//de letras repetidas y reemplazamos todas las letras dentro de la cadena con un espacio
+    				//para evitar volver a contar una letra ya incluida en el conteo
     				cp = cp.replace(text.charAt(i), ' ');
     				if(sum > 1){
     				    ++tot;
@@ -164,6 +177,8 @@ public class Application
     	char voc[] = {'a','e','i','o','u'};
     	int tot=0;
     	str = str.toLowerCase();
+    	//Simplemente se busca que la letra en la posicion actual este dentro del pequeño
+    	//diccionario de vocales y si lo esta se le suma uno al contador
     	for(int i = 0 ; i < str.length(); ++i) {
     		for(int j = 0 ; j < voc.length; ++j) {
     			if(str.charAt(i) == voc[j]) {
@@ -195,6 +210,9 @@ public class Application
     public static int persistence(long n)
     {
         //Next is so easy after this
+    	//Verificamos las unidades que tenemos: miles,centenas,decenas y unidades y luego las separamos
+    	//para multiplicarlas y despues pasarla de manera recursiva a la misma funcion hasta que solo
+    	//tengamos unidades
     	if(n/1000 != 0) {
     		int mil = (int)(n/1000);
     		n %= 1000;
@@ -244,6 +262,9 @@ public class Application
     public static int digital_root(int n)
     {
         //Another easy
+    	//Se aplica el mismo proceso que el algoritmo anterior solo que en
+    	//vez de pasar de manera recursiva la multiplicacion de lo separado
+    	//pasamos la suma de esto-
     	if(n/100000 != 0) {
     		int ht = n/100000;
     		n %= 100000;
@@ -313,12 +334,16 @@ public class Application
     public static String[] solution(String s)
     {
         //Will be worse ?
+    	//Para asegurar que siempre habra pares obtenemos la longitud de la cadena
+    	//y en caso de que sea impar le sumamos un guion bajo
     	if(s.length() % 2 != 0) {
     		s = s.concat("_");
     	}
     	int size = s.length()/2;
     	String[] pairs = new String[size];
     	int beg = 0, end = 2;
+    	//Ya que tenemos el numero de pares simplemente vamos obteniendo subcadenas
+    	//de tamaño 2 y se lo agregamos al arreglo de pares
     	for(int i = 0; i < size; ++i) {
     		pairs[i] = s.substring(beg, end);
     		beg += 2;
@@ -349,8 +374,11 @@ public class Application
     public static String longToIP(long ip)
     {
         //yes, can be worse...
+    	//Se realiza la conversion del long a binario
     	String bin = Long.toBinaryString(ip);
     	System.out.println(bin);
+    	//Para asegurar que sea un valor de 32 bits obtenemos su longitud
+    	//en caso de que sea menor simplemente agregamos ceros a la izquierda
     	if(bin.length() < 32) {
     		int comp = 32 - bin.length();
     		for(int i = 0; i < comp; ++i) {
@@ -359,23 +387,17 @@ public class Application
     			bin = bin.concat(aux);
     		}
     	}
-    	System.out.println(bin);
+    	//Hacemos la extraccion de los 4 bytes de 8 bits
     	String first = bin.substring(0, 8);
     	String second = bin.substring(8, 16);
     	String third = bin.substring(16, 24);
     	String fourth = bin.substring(24, 32);
-    	System.out.println(first);
-    	System.out.println(second);
-    	System.out.println(third);
-    	System.out.println(fourth);
+    	//Convertimos el valor del String a enteros haciendo una conversion de binario a decimal
     	int p1 = Integer.parseInt(first, 2);
     	int p2 = Integer.parseInt(second, 2);
     	int p3 = Integer.parseInt(third, 2);
     	int p4 = Integer.parseInt(fourth, 2);
-    	System.out.println(p1);
-    	System.out.println(p2);
-    	System.out.println(p3);
-    	System.out.println(p4);
+    	//Generamos el string de la direccion ip concatenando todas sus partes
     	String fIp = String.valueOf(p1);
     	fIp = fIp.concat("."+String.valueOf(p2)+"."+String.valueOf(p3)+"."+String.valueOf(p4));
         return fIp;
@@ -400,6 +422,8 @@ public class Application
     public static int findShort(String s)
     {
         //have fun!
+    	//Dividimos la cadena de entrada tomando como delimitador el espacio en blanco y simplemente
+    	//comparamos la longitud de cada una de las divisiones realizadas en busca de la mas pequeña
     	int shortest = 100000;
     	String[] div = s.split(" ");
     	for(int i =0; i < div.length; ++i) {
@@ -427,6 +451,9 @@ public class Application
     public static Integer repeated(int[] values)
     {
         //Last one!
+    	//Buscamos por una incidencia de el numero en la posicion del arreglo en la que estamos,
+    	//en caso de que se encuentre lo retornamos como valor de salida, en caso contrario simplemente
+    	//buscamos los demas numeros que siguen
     	for(int i =0 ; i < values.length; ++i) {
     		for(int j = i+1; j < values.length; ++j) {
     			if(values[i] == values[j]) {
