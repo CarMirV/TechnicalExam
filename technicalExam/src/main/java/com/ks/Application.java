@@ -125,22 +125,24 @@ public class Application
     	int tot = 0;
     	String cp = text.toLowerCase();
     	for(int i = 0; i < text.length(); ++i) {
-    		int sum = 1;
-    		for(int j = 0 ; j < cp.length(); ++i) {
+    		int sum = 0;
+    		for(int j = 0 ; j < cp.length(); ++j) {
     			if(text.charAt(i) == cp.charAt(j)) {
-    				++sum;
+    			    ++sum;
     			}
     			if(j == cp.length()-1) {
-    				String rep = "";
-    				cp = cp.replace(text.charAt(i), rep.charAt(0));
+    				cp = cp.replace(text.charAt(i), ' ');
+    				if(sum > 1){
+    				    ++tot;
+    				}
     			}
-    		}
-    		if(sum > 1) {
-    			tot += sum;
     		}
     		
     	}
         return tot;
+        /*
+         * Done :)
+         */
     }
 
     /**
